@@ -1,0 +1,48 @@
+{
+  "name": "data-studio",
+  "version": "1.0.0",
+  "description": "Data Studio by Eviratec",
+  "main": "main.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node_modules/nw/bin/nw .",
+    "build": "babel src -d lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/data-studio/data-studio.git"
+  },
+  "author": "Callan Peter Milne <callan.milne@eviratec.com.au>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/data-studio/data-studio/issues"
+  },
+  "babel": {
+    "plugins": [
+      "babel-polyfill"
+    ],
+    "presets": [
+      "env"
+    ],
+    "ignore": [
+      "foo.js",
+      "bar/**/*.js"
+    ]
+  },
+  "homepage": "https://github.com/data-studio/data-studio#readme",
+  "dependencies": {
+    "angular": "1.6.4",
+    "angular-animate": "1.6.4",
+    "angular-aria": "1.6.4",
+    "angular-cookies": "1.6.4",
+    "angular-material": "1.1.4",
+    "angular-messages": "1.6.4",
+    "angular-route": "1.6.4",
+    "nw": "0.22.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-polyfill": "6.23.0",
+    "babel-preset-env": "1.5.0"
+  }
+}

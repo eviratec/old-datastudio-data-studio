@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Sidenav</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+  <link rel='stylesheet prefetch' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.4/angular-material.css'>
+  <link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.4/docs.css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  <link rel="stylesheet" href="lib/data-studio.css">
+
+</head>
+
+<body>
+  <div ng-controller="AppCtrl"
+       layout="column"
+       style="height: 100%;"
+       ng-cloak=""
+       class="sidenavdemoCustomSidenav"
+       ng-app="MyApp">
+
+  <section layout="row"
+           flex=""
+           ng-controller="TypeListController as $typeList">
+
+    <md-sidenav class="md-sidenav-left"
+                md-component-id="left"
+                md-disable-backdrop=""
+                md-whiteframe="4">
+
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">My Types</h1>
+      </md-toolbar>
+
+      <md-content>
+        <md-menu>
+          <md-menu-item ng-repeat="type in $typeList.$types">
+            <md-button>
+              <span class="inset">
+                <md-icon class="material-icons s24"
+                         style="color:#000;">folder_open</md-icon>
+              </span>
+              {{ type.Label }}
+            </md-button>
+          </md-menu-item>
+        </md-menu>
+        <md-button ng-click="toggleLeft()" class="md-accent">
+          Close this Sidenav
+        </md-button>
+      </md-content>
+
+    </md-sidenav>
+
+    <div flex=""
+         layout="column"
+         ng-controller="EntityTableController as $entity">
+
+      <md-toolbar md-theme="blue">
+        <div class="md-toolbar-tools" style="background-color:#424242;">
+          <md-button ng-click="toggleLeft()"
+                     class="md-icon-button">
+           <md-icon class="material-icons s24">
+             menu
+           </md-icon>
+          </md-button>
+          <h1>List</h1>
+          <span flex></span>
+          <md-button ng-click="$entity.showCreateDialog()" class="md-accent md-raised">
+            Add
+          </md-button>
+        </div>
+      </md-toolbar>
+
+      <div style="height:160px;background-color:#212121;">
+        &nbsp;
+      </div>
+
+      <md-content flex="" style="background-color:#fafafa;">
+
+        <table style="width:100%;" cellspacing="0">
+          <thead>
+            <tr>
+              <th style="text-align:right;border-bottom:1px solid rgba(0,0,0,0.12);color:rgba(255,255,255,0.5);padding:8px 16px;background-color:#212121;font-weight:normal;">Entity ID</th>
+              <th style="text-align:left;border-bottom:1px solid rgba(0,0,0,0.12);color:rgba(255,255,255,0.5);padding:8px 16px;background-color:#212121;font-weight:normal;"
+                  ng-repeat="attr in $entity.$type.Attributes">
+                {{ attr.Label }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="entity in $entity.$entities">
+              <td style="border:none;padding:0;border-right:1px solid rgba(0,0,0,0.12);">
+                <div style="background-color:#fff;text-align:right;border-bottom:1px solid rgba(0,0,0,0.12);color:rgba(0,0,0,0.54);padding:24px 16px 16px;">
+                # {{ entity.ID }}
+                </div>
+              </td>
+              <td class="table-cell"
+                  ng-repeat="attr in $entity.$type.Attributes"
+                  style="border:none;padding:0;border-right:1px solid rgba(0,0,0,0.12);">
+                <div ng-if="$entity.editing === '#/U/1/T/'+$entity.$type.ClassName+'/E/'+entity.ID+'/A/'+attr.AttributeKey"
+                     style="background-color:#fff;text-align:left;border-bottom:1px solid rgba(0,0,0,0.12);color:rgba(0,0,0,0.87);padding:24px 16px 16px;">
+                  <input>
+                  <a href="#"
+                     ng-click="$entity.editing = null"
+                     class="md-caption">Cancel</a>
+                </div>
+                <div ng-if="$entity.editing !== '#/U/1/T/'+$entity.$type.ClassName+'/E/'+entity.ID+'/A/'+attr.AttributeKey"
+                     style="background-color:#fff;text-align:left;border-bottom:1px solid rgba(0,0,0,0.12);color:rgba(0,0,0,0.87);padding:24px 16px 16px;">
+                {{ $entity.$cell['#/U/1/T/'+$entity.$type.ClassName+'/E/'+entity.ID+'/A/'+attr.AttributeKey]}}
+                  <a href="#" ng-click="$entity.editing = '#/U/1/T/'+$entity.$type.ClassName+'/E/'+entity.ID+'/A/'+attr.AttributeKey" class="md-caption">Edit</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </md-content>
+    </div>
+
+  </section>
+
+  </div>
+
+  <!--
+  Copyright 2016 Google Inc. All Rights Reserved.
+  Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+  -->
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js'></script>
+  <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'></script>
+  <script src='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.4/angular-material.js'></script>
+
+  <script src="lib/data-studio.js"></script>
+
+</body>
+</html>
