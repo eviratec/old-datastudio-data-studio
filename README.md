@@ -2,6 +2,10 @@
 
 Data Studio by [eviratec.software](https://github.com/eviratec).
 
+## A diagram
+
+![A diagram...](https://s3-ap-southeast-2.amazonaws.com/data-studio/pub/assets/data_studio.png)
+
 ## License
 
 ```
